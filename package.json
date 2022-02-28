@@ -1,0 +1,20 @@
+{
+  "name": "nodejs-docker-express-sql",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/andrewmoquia/nodejs-docker-express-sql.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/andrewmoquia/nodejs-docker-express-sql/issues"
+  },
+  "homepage": "https://github.com/andrewmoquia/nodejs-docker-express-sql#readme"
+}
