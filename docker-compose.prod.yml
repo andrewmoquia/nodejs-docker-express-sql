@@ -1,7 +1,7 @@
 version: '1.0'
 
 services:
-  ts-node-docker:
+  tsnode-docker:
     build:
       target: production
     command: node build/index.js
