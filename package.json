@@ -1,5 +1,5 @@
 {
-   "name": "nodejs-docker-express-sql",
+   "name": "tsnode-docker",
    "version": "1.0.0",
    "description": "",
    "main": "index.js",
