@@ -42,6 +42,9 @@ export class App {
       this.app.use(helmet());
 
       //Handle routes
+      this.app.get('/', (req, res) => {
+         res.send('<h1>Hello World!</h1>');
+      });
 
       //Initiate the server app
       this.app.listen(this.port, () => {
