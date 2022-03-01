@@ -1,14 +1,15 @@
 {
-   "name": "nodejs-docker-express-sql",
+   "name": "tsnode-docker",
    "version": "1.0.0",
    "description": "",
    "main": "index.js",
    "scripts": {
-      "docker-build": "docker-compose build",
-      "prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
-      "stop": "docker-compose down",
-      "dev": "docker-compose up -d",
+      "docker:build": "docker-compose build",
+      "docker:prod": "docker-compose -f docker-compose.yml -f docker-compose.prod.yml up --build -d",
+      "docker:stop": "docker-compose down",
+      "docker:dev": "docker-compose up -d",
       "start": "NODE_PATH=./build node build/index.js",
+      "dev": "nodemon --exec ts-node src/index.ts",
       "build": "tsc -p .",
       "test": "echo \"Error: no test specified\" && exit 1"
    },
