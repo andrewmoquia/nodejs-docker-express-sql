@@ -1,0 +1,17 @@
+version: '1.0'
+
+services:
+  ts-node-docker:
+    build:
+      context: .
+      dockerfile: Dockerfile
+      target: base
+    volumes:
+      - ./src:/app/src
+      - ./nodemon.json:/app/nodemon.json
+    container_name: ts-node-docker
+    expose:
+      - '5000'
+    ports:
+      - '5000:5000'
+    command: npm run dev
