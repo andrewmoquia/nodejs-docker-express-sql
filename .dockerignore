@@ -5,3 +5,6 @@ Dockerfile
 .dockerignore
 .cache
 .md
+.env
+docker-compose.yml
+docker-compose.prod.yml
