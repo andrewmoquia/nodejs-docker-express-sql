@@ -48,9 +48,10 @@ RUN npm run build
 # ls = list files
 # printenv = see env
 
-# sync local folder to folder in docker container
-# avoid rebuild the image
-# 
-
 # See open container.
 # docker ps
+# docker inspect <name> = get network ipaddress to connect in mongo
+
+# See docker network
+# docker network ls
+# docker network inspect <name>

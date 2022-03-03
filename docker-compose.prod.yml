@@ -14,3 +14,9 @@ services:
       NODE_ENV: "production"
     container_name: production
     command: node build/index.js
+
+  mongo:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: superadmin
+      MONGO_INITDB_ROOT_PASSWORD: 1234
