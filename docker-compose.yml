@@ -1,4 +1,4 @@
-version: '1.0'
+version: '3'
 
 services:
   tsnode-docker:
@@ -12,7 +12,6 @@ services:
       COOKIE_SECRET: "secret"
     volumes:
       - ./src:/app/src
-      - ./nodemon.json:/app/nodemon.json
     container_name: tsnode-docker
     expose:
       - '5000'
