@@ -2,6 +2,9 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
+import { db } from './database';
+import { PostRoutes } from './routes/post.routes';
+import { UserRoutes } from './routes/user.routes';
 
 export class App {
    private app: Express;
@@ -19,6 +22,9 @@ export class App {
    public start() {
       //Allow test in localhost:3000.
       this.app.set('trust proxy', 1);
+
+      //Connect to the database
+      db.connect();
 
       //Site that allow to make request in API.
       this.app.use(
@@ -42,13 +48,8 @@ export class App {
       this.app.use(helmet());
 
       //Handle routes
-      this.app.get('/', (req, res) => {
-         res.send('<h1>Hello World</h1>');
-      });
-
-      this.app.get('/test', (req, res) => {
-         res.send('<h1>This is a test!!</h1>');
-      });
+      this.app.use(PostRoutes.create());
+      this.app.use(UserRoutes.create());
 
       //Initiate the server app
       this.app.listen(this.port, () => {
