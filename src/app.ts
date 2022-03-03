@@ -43,7 +43,11 @@ export class App {
 
       //Handle routes
       this.app.get('/', (req, res) => {
-         res.send('<h1>Hello World!</h1>');
+         res.send('<h1>Hello World</h1>');
+      });
+
+      this.app.get('/test', (req, res) => {
+         res.send('<h1>This is a test!!</h1>');
       });
 
       //Initiate the server app

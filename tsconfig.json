@@ -23,7 +23,7 @@
 
       //TypeScript includes a default set of type definitions for built-in JS APIs (like Math),
       //as well as type definitions for things found in browser environments (like document).
-      "lib": ["es5", "es6", "es2015.collection"],
+      "lib": ["es5", "es6", "es2015.collection", "dom"],
 
       //Allow debuggers and other tools to display the original TypeScript source code.
       "sourceMap": false,

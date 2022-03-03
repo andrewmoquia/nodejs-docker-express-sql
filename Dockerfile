@@ -1,4 +1,4 @@
-FROM node:14 as base
+FROM node:17 as base
 
 WORKDIR /app
 
@@ -39,6 +39,13 @@ RUN npm run build
 # node-app-image    = name of the image. 
 # -d                = run in development
 # docker run -d --name node-app node-app-image
+
+# see files inside our docker image
+# docker exec -it node-app bash
+
+# sync local folder to folder in docker container
+# avoid rebuild the image
+# 
 
 # See open container.
 # docker ps
