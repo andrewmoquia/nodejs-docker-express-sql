@@ -4,4 +4,13 @@ services:
   tsnode-docker:
     build:
       target: production
+      args:
+        NODE_ENV: production
+    environment:
+      PORT: 5000
+      ORIGIN: "http://localhost:3000"
+      COOKIE_SECRET: "secret"
+      NODE_PATH: "./build"
+      NODE_ENV: "production"
+    container_name: production
     command: node build/index.js
