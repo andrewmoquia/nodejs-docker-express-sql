@@ -4,17 +4,20 @@ WORKDIR /app
 
 COPY package*.json ./
 
-RUN npm i
+ARG NODE_ENV
+RUN if [ "$NODE_ENV" = "development" ]; \
+        then npm install; \
+        else npm install --only=production; \
+        fi
 
 COPY . .
 
-
-
 FROM base as production
 
-ENV NODE_PATH=./build
-
 RUN npm run build
+
+
+
 
 # Build our docker image
 # docker-compose build
@@ -42,6 +45,8 @@ RUN npm run build
 
 # see files inside our docker image
 # docker exec -it node-app bash
+# ls = list files
+# printenv = see env
 
 # sync local folder to folder in docker container
 # avoid rebuild the image
