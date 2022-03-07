@@ -13,7 +13,7 @@ class Database {
       this.port = process.env.MONGO_PORT;
    }
 
-   public connectWithRetry = () => {
+   public connect() {
       mongoose
          .connect(`mongodb://${this.user}:${this.pw}@${this.ip}:${this.port}/?authSource=admin`)
          .then(() => {
@@ -22,14 +22,8 @@ class Database {
          .catch((err) => {
             console.log(err);
             //Reconnect to the server if failed every 5 secs.
-            setTimeout(this.connectWithRetry, 5000);
+            setTimeout(this.connect, 5000);
          });
-   };
-
-   public connect() {
-      (async () => {
-         this.connectWithRetry();
-      })();
    }
 }
 

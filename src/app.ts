@@ -2,9 +2,10 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { db } from './database';
+import { db } from './services/database';
 import { PostRoutes } from './routes/post.routes';
 import { UserRoutes } from './routes/user.routes';
+import redis from './services/redis';
 
 export class App {
    private app: Express;
@@ -25,6 +26,9 @@ export class App {
 
       //Connect to the database
       db.connect();
+
+      //Redis server session
+      this.app.use(redis.createSession());
 
       //Site that allow to make request in API.
       this.app.use(

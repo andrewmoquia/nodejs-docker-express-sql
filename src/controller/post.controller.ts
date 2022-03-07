@@ -21,7 +21,6 @@ export class PostController {
          const { id } = req.params;
 
          const post = await Post.findById(id);
-
          post ? res.json({ post }) : res.json({ message: 'Failed to find post.' });
       } catch (error) {
          res.json({ error });
@@ -31,11 +30,9 @@ export class PostController {
    public updatePost: RequestHandler = async (req, res) => {
       try {
          const { id } = req.params;
-
          const { title, body } = req.body;
 
          const post = await Post.findByIdAndUpdate(id, { title, body });
-
          post
             ? res.json({ message: 'Successfully updated post.' })
             : res.json({ message: 'Failed to update post.' });
@@ -49,7 +46,6 @@ export class PostController {
          const { id } = req.params;
 
          const post = await Post.findByIdAndDelete(id);
-
          post
             ? res.json({ message: 'Successfully deleted post.' })
             : res.json({ message: 'Failed to delete post.' });
