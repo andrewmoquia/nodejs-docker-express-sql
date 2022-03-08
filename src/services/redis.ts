@@ -30,7 +30,7 @@ class RedisSession {
          cookie: {
             secure: false,
             httpOnly: true,
-            maxAge: 30000,
+            maxAge: 1000 * 60 * 5,
          },
       });
    }

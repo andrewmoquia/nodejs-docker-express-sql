@@ -21,10 +21,13 @@ class Database {
          })
          .catch((err) => {
             console.log(err);
+
             //Reconnect to the server if failed every 5 secs.
             setTimeout(this.connect, 5000);
          });
    }
 }
 
-export const db = new Database();
+const db = new Database();
+
+export default db;
