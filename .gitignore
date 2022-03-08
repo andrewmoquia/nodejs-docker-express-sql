@@ -1,3 +1,4 @@
 node_modules
 .env
-environment
+environment/redis/appendonly.aof
+environment/redis/dump.rdb
