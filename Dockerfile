@@ -37,11 +37,19 @@ RUN npm run build
 # docker image ls
 # docker image rm image_id
 # docker build -t node-app-image . 
+# docker image tag tsnode-docker_tsnode-docker andrewmoquia/tsnode-docker = rename docker container
+# --no-deps tsnode-docker = only update tsnode-docker service only
 
 # --name node app   = name of the container we creating.
 # node-app-image    = name of the image. 
 # -d                = run in development
 # docker run -d --name node-app node-app-image
+
+# apply changes to tsnode-docker services only
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml up -d --no-deps tsnode-docker
+
+# pull changes from docker hub
+# docker-compose -f docker-compose.yml -f docker-compose.prod.yml pull tsnode-docker
 
 # see files inside our docker image
 # docker exec -it node-app bash
