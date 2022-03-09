@@ -1,4 +1,7 @@
-node_modules
+node_modules/
+
 .env
+
 environment/redis/appendonly.aof
+
 environment/redis/dump.rdb
