@@ -1,6 +1,15 @@
-import { RequestHandler } from 'express';
+import { RequestHandler, Request } from 'express';
 import User from '../model/user.model';
 import bcrypt from 'bcryptjs';
+
+import { Session } from 'express-session';
+
+export type SessionWithUser = Session & { user: string | {} };
+
+export type AuthRequest = Request & {
+   session?: SessionWithUser;
+   user?: any;
+};
 
 export class UserController {
    public signUp: RequestHandler = async (req, res) => {
@@ -27,20 +36,28 @@ export class UserController {
       }
    };
 
-   public signIn: RequestHandler = async (req, res) => {
+   public signIn: RequestHandler = async (req: AuthRequest, res) => {
       try {
          const { username, password } = req.body;
 
          const user: any = await User.findOne({ username });
          if (!user) return res.json({ message: 'Incorrect password or username.' });
 
-         const chechPassword = await bcrypt.compare(password, user.password);
+         req.session.user = user;
 
+         const chechPassword = await bcrypt.compare(password, user.password);
          return chechPassword && user
             ? res.json({ message: 'Successfully login.' })
             : res.json({ message: 'Incorrect password or username.' });
       } catch (error) {
          return res.json({ error });
       }
+   };
+
+   public logoutUser: RequestHandler = async (req, res) => {
+      req.session.destroy((err: Error) => {
+         if (err) res.json({ message: 'Failed to logout. Try again later.' });
+      });
+      res.json({ message: 'Successfully logout.' });
    };
 }
