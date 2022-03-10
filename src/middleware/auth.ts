@@ -1,14 +1,17 @@
-import { RequestHandler, Request } from 'express';
+import { RequestHandler } from 'express';
 import { AuthRequest } from '../controller/user.controller';
 
 export const protect: RequestHandler = (req: AuthRequest, res, next) => {
+   //Get user data from session
    const { user } = req.session;
 
    if (!user) {
       return res.status(401).json({ status: 'fail', message: 'Unauthorize.' });
    }
 
+   //Set user to request
    req.user = user;
 
+   //Proceed to the next action
    return next();
 };
