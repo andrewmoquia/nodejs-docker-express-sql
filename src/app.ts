@@ -2,7 +2,7 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import { db } from './services/database';
+import db from './services/database';
 import { PostRoutes } from './routes/post.routes';
 import { UserRoutes } from './routes/user.routes';
 import redis from './services/redis';
@@ -24,10 +24,13 @@ export class App {
       //Allow test in localhost:3000.
       this.app.set('trust proxy', 1);
 
+      //Necessary to get access to ip for rate limiting.
+      this.app.enable('trust proxy');
+
       //Connect to the database
       db.connect();
 
-      //Redis server session
+      //Create redis server session
       this.app.use(redis.createSession());
 
       //Site that allow to make request in API.
@@ -54,6 +57,10 @@ export class App {
       //Handle routes
       this.app.use(PostRoutes.create());
       this.app.use(UserRoutes.create());
+      this.app.get('/', (req, res) => {
+         res.send('<h1>Hello World!!!!</h1>');
+         console.log('Running');
+      });
 
       //Initiate the server app
       this.app.listen(this.port, () => {
