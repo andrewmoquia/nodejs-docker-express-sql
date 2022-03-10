@@ -10,6 +10,8 @@ export class UserRoutes {
 
       this.router.post('/signin', this.cntrl.signIn);
 
+      this.router.post('/logout', this.cntrl.logoutUser);
+
       return this.router;
    }
 }
