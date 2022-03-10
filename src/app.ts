@@ -3,9 +3,9 @@ import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import db from './services/database';
-import { PostRoutes } from './routes/post.routes';
-import { UserRoutes } from './routes/user.routes';
 import redis from './services/redis';
+import { ErrorHandling } from './middleware/errorHandling';
+import routers from './routes';
 
 export class App {
    private app: Express;
@@ -55,12 +55,13 @@ export class App {
       this.app.use(helmet());
 
       //Handle routes
-      this.app.use(PostRoutes.create());
-      this.app.use(UserRoutes.create());
-      this.app.get('/', (req, res) => {
+      this.app.use('/app/v1', routers);
+      this.app.get('/app/vi', (req, res) => {
          res.send('<h1>Hello World!!!!</h1>');
          console.log('Running');
       });
+
+      this.app.use(ErrorHandling.catch());
 
       //Initiate the server app
       this.app.listen(this.port, () => {
