@@ -13,24 +13,28 @@ class RedisSession {
       this.secret = process.env.SECRET_SESSION;
    }
 
-   public createSession() {
-      const redisClient = new Redis({
+   //Setup redis options
+   private redisClient() {
+      return new Redis({
          port: Number(this.port),
          host: this.ip,
          family: 4,
          db: 0,
          enableReadyCheck: true,
       });
+   }
 
+   //Create redis session
+   public createSession() {
       return session({
-         store: new RedisStore({ client: redisClient }),
+         store: new RedisStore({ client: this.redisClient() }),
          saveUninitialized: false,
          resave: false,
          secret: this.secret || 'secret',
          cookie: {
             secure: false,
             httpOnly: true,
-            maxAge: 1000 * 60 * 5,
+            maxAge: 1000 * 60 * 5, //5 minutes
          },
       });
    }
