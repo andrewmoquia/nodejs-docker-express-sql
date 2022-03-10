@@ -13,6 +13,7 @@ class Database {
       this.port = process.env.MONGO_PORT;
    }
 
+   //Create mongoose connection to mongo
    public connect() {
       mongoose
          .connect(`mongodb://${this.user}:${this.pw}@${this.ip}:${this.port}/?authSource=admin`)
@@ -22,7 +23,7 @@ class Database {
          .catch((err) => {
             console.log(err);
 
-            //Reconnect to the server if failed every 5 secs.
+            //Reconnect to the server if failed every 5 secs
             setTimeout(this.connect, 5000);
          });
    }
