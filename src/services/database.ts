@@ -1,22 +1,15 @@
 import mongoose from 'mongoose';
 
-class Database {
-   private user: string | undefined;
-   private pw: string | undefined;
-   private ip: string | undefined;
-   private port: string | undefined;
-
-   constructor() {
-      this.user = process.env.MONGO_USER;
-      this.pw = process.env.MONGO_PASS;
-      this.ip = process.env.MONGO_IP;
-      this.port = process.env.MONGO_PORT;
-   }
+export class Database {
+   private static USER = process.env.MONGO_USER;
+   private static PASS = process.env.MONGO_PASS;
+   private static IP = process.env.MONGO_IP;
+   private static PORT = process.env.MONGO_PORT;
 
    //Create mongoose connection to mongo
-   public connect() {
+   public static connect() {
       mongoose
-         .connect(`mongodb://${this.user}:${this.pw}@${this.ip}:${this.port}/?authSource=admin`)
+         .connect(`mongodb://${this.USER}:${this.PASS}@${this.IP}:${this.PORT}/?authSource=admin`)
          .then(() => {
             console.log('Successfully connected to the mongo database.');
          })
@@ -28,7 +21,3 @@ class Database {
          });
    }
 }
-
-const db = new Database();
-
-export default db;
