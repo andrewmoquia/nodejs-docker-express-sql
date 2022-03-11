@@ -26,7 +26,7 @@ services:
       NODE_ENV: 'production'
       MONGO_IP: mongo
       MONGO_PORT: 27017
-      MONGO_USER: superadmin
+      MONGO_USER: admin
       MONGO_PASS: 1234
       REDIS_IP: redis
       REDIS_PORT: 6379
@@ -36,5 +36,5 @@ services:
 
   mongo:
     environment:
-      MONGO_INITDB_ROOT_USERNAME: superadmin
+      MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: 1234

@@ -1,7 +1,8 @@
 import glob from 'glob';
 import { Router } from 'express';
 
-const routers = glob
+//Combined all routes into one variable
+const Routers = glob
    //Check all files in the current directory
    .sync(`**/*.${process.env.NODE_ENV === 'production' ? 'js' : 'ts'}`, {
       cwd: `${__dirname}/`,
@@ -15,4 +16,4 @@ const routers = glob
       return rootRouter.use(router.default);
    }, Router({ mergeParams: true }));
 
-export default routers;
+export default Routers;
