@@ -2,8 +2,8 @@ import express, { Express } from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
-import db from './services/database';
-import redis from './services/redis';
+import { Database } from './services/database';
+import { RedisSession } from './services/redis';
 import { ErrorHandling } from './middleware/errorHandling';
 import Routers from './routes';
 
@@ -28,10 +28,10 @@ export class App {
       this.app.enable('trust proxy');
 
       //Connect to the database
-      db.connect();
+      Database.connect();
 
       //Create redis server session
-      this.app.use(redis.createSession());
+      this.app.use(RedisSession.createSession());
 
       //Site that allow to make request in API.
       this.app.use(

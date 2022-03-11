@@ -2,22 +2,16 @@ import session from 'express-session';
 import Redis from 'ioredis';
 const RedisStore = require('connect-redis')(session);
 
-class RedisSession {
-   private ip: string | undefined;
-   private port: string | undefined;
-   private secret: string | undefined;
-
-   constructor() {
-      this.ip = process.env.REDIS_IP;
-      this.port = process.env.REDIS_PORT;
-      this.secret = process.env.SECRET_SESSION;
-   }
+export class RedisSession {
+   private static IP = process.env.REDIS_IP;
+   private static PORT = process.env.REDIS_PORT;
+   private static SECRET = process.env.SECRET_SESSION;
 
    //Setup redis options
-   private redisClient() {
+   private static redisClient() {
       return new Redis({
-         port: Number(this.port),
-         host: this.ip,
+         port: Number(this.PORT),
+         host: this.IP,
          family: 4,
          db: 0,
          enableReadyCheck: true,
@@ -25,12 +19,12 @@ class RedisSession {
    }
 
    //Create redis session
-   public createSession() {
+   public static createSession() {
       return session({
          store: new RedisStore({ client: this.redisClient() }),
          saveUninitialized: false,
          resave: false,
-         secret: this.secret || 'secret',
+         secret: this.SECRET || 'secret',
          cookie: {
             secure: false,
             httpOnly: true,
@@ -39,7 +33,3 @@ class RedisSession {
       });
    }
 }
-
-const redis = new RedisSession();
-
-export default redis;
