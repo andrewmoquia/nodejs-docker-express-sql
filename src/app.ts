@@ -5,7 +5,7 @@ import cookieParser from 'cookie-parser';
 import db from './services/database';
 import redis from './services/redis';
 import { ErrorHandling } from './middleware/errorHandling';
-import routers from './routes';
+import Routers from './routes';
 
 export class App {
    private app: Express;
@@ -55,7 +55,7 @@ export class App {
       this.app.use(helmet());
 
       //Handle routes
-      this.app.use('/app/v1', routers);
+      this.app.use('/app/v1', Routers);
       this.app.get('/app/vi', (req, res) => {
          res.send('<h1>Hello World!!!!</h1>');
          console.log('Running');
