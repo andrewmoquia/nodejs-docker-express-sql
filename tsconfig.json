@@ -1,6 +1,6 @@
 {
    "compilerOptions": {
-      //Allows you to write an import instead of require()
+      //Allows you to write an import instead of require().
       "esModuleInterop": true,
 
       //Raise error if when the module does not explicitly specify a default export.
@@ -12,7 +12,7 @@
       //Lets you set a base directory to resolve non-absolute module names.
       "baseUrl": "./src",
 
-      //The directory structure of the original source files is preserved
+      //The directory structure of the original source files is preserved.
       "outDir": "./build",
 
       //Sets the module system for the program.
@@ -34,7 +34,7 @@
       //Allow JavaScript files to be imported inside your project.
       "allowJs": true,
 
-      //Module resolution strategy
+      //Module resolution strategy.
       "moduleResolution": "node",
 
       //Keeps the same directory structure in the output directory as exists in the input directory.

@@ -7,7 +7,7 @@ export class RedisSession {
    private static PORT = process.env.REDIS_PORT;
    private static SECRET = process.env.SECRET_SESSION;
 
-   //Setup redis options
+   //Setup redis options.
    private static redisClient() {
       return new Redis({
          port: Number(this.PORT),
@@ -18,7 +18,7 @@ export class RedisSession {
       });
    }
 
-   //Create redis session
+   //Create redis session.
    public static createSession() {
       return session({
          store: new RedisStore({ client: this.redisClient() }),
