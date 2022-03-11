@@ -1,7 +1,6 @@
 import { RequestHandler, Request } from 'express';
 import User from '../model/user.model';
 import bcrypt from 'bcryptjs';
-
 import { Session } from 'express-session';
 
 export type SessionWithUser = Session & { user: string | {} };
