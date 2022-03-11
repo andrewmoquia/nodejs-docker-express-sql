@@ -6,7 +6,7 @@ export class Database {
    private static IP = process.env.MONGO_IP;
    private static PORT = process.env.MONGO_PORT;
 
-   //Create mongoose connection to mongo
+   //Create mongoose connection to mongo.
    public static connect() {
       mongoose
          .connect(`mongodb://${this.USER}:${this.PASS}@${this.IP}:${this.PORT}/?authSource=admin`)
@@ -16,7 +16,7 @@ export class Database {
          .catch((err) => {
             console.log(err);
 
-            //Reconnect to the server if failed every 5 secs
+            //Reconnect to the server if failed every 5 secs.
             setTimeout(this.connect, 5000);
          });
    }
