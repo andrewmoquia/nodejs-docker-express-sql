@@ -61,6 +61,7 @@ export class App {
          console.log('Running');
       });
 
+      //Handle catching error responds
       this.app.use(ErrorHandling.catch());
 
       //Initiate the server app
