@@ -1,11 +1,11 @@
-import express, { Express } from 'express';
+import express from 'express';
 import helmet from 'helmet';
 import cors from 'cors';
 import cookieParser from 'cookie-parser';
 import { Database } from './services/database';
 import { RedisSession } from './services/redis';
-import { ErrorHandling } from './middleware/errorHandling';
-import Routers from './routes';
+import { ErrorHandler } from './middleware/errorHandler';
+import Routers from './api/index';
 
 export class App {
    private static app = express();
@@ -55,7 +55,7 @@ export class App {
       });
 
       //Handle catching error responds.
-      this.app.use(ErrorHandling.catch());
+      this.app.use(ErrorHandler.catch());
 
       //Initiate the server app.
       this.app.listen(this.port, () => {

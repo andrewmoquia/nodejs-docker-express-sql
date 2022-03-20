@@ -1,5 +1,5 @@
 import { RequestHandler, Request } from 'express';
-import User from '../model/user.model';
+import User from './user.model';
 import bcrypt from 'bcryptjs';
 import { Session } from 'express-session';
 

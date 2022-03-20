@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import Post from '../model/post.model';
+import Post from './post.model';
 
 export class PostController {
    public createPost: RequestHandler = async (req, res) => {
