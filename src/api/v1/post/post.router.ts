@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { PostController } from '../../controller/post.controller';
-import { protect } from '../../middleware/auth';
+import { PostController } from './post.controller';
+import { protect } from '../../../middleware/auth';
 
 class PostRoutes {
    private static cntrl = new PostController();
