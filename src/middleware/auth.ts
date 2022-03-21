@@ -1,5 +1,5 @@
 import { RequestHandler } from 'express';
-import { AuthRequest } from '../controller/user.controller';
+import { AuthRequest } from '../api/v1/user/user.controller';
 
 export const protect: RequestHandler = (req: AuthRequest, res, next) => {
    //Get user data from session
